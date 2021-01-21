@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+  - family-names: "Lorenzo"
+    given-names: ""
+title: "Scientific Document Reconstructor"
+version: 0.1.0
+date-released: 2026-09-05
+url: "https://github.com/lorenhey/scientific-document-reconstructor"
+abstract: "Reconstructing scientific documents from scans into structured, auditable digital editions."
