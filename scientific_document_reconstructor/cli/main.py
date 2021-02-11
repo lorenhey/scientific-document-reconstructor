@@ -47,6 +47,11 @@ def reconstruct(pdf_path: str, profile: str = "default", project_dir: Optional[s
     ocr = TextRecognizer(manager)
     ocr.process()
     
+    console.print("Recognizing math...")
+    from ..pipeline.ocr_math import MathRecognizer
+    math_ocr = MathRecognizer(manager)
+    math_ocr.process()
+    
     console.print(f"[bold green]Reconstruction complete. Saved to {out_dir}[/bold green]")
 
 @app.command()
@@ -71,6 +76,15 @@ def review(project_dir: str, port: int = 8000):
     console.print(f"[bold green]Starting review server on port {port}...[/bold green]")
     os.environ["SDR_PROJECT_DIR"] = project_dir
     uvicorn.run("scientific_document_reconstructor.ui.app:app", host="127.0.0.1", port=port, reload=False)
+
+@app.command()
+def validate(project_dir: str):
+    """Generates a final validation report for a project."""
+    manager = PipelineManager(project_dir)
+    manager.load_project()
+    from ..pipeline.validation import Validator
+    validator = Validator(manager)
+    validator.run()
 
 if __name__ == "__main__":
     app()

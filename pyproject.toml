@@ -34,6 +34,9 @@ dependencies = [
 [project.scripts]
 sdr = "scientific_document_reconstructor.cli.main:app"
 
+[tool.setuptools.packages.find]
+include = ["scientific_document_reconstructor*"]
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 

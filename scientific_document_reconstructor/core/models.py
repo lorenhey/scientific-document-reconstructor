@@ -1,5 +1,5 @@
 from enum import Enum
-from typing import List, Optional, Any, Dict, Union
+from typing import List, Optional, Any, Dict, Union, Literal, Annotated
 from pydantic import BaseModel, Field
 import uuid
 import datetime
@@ -40,7 +40,7 @@ class BoundingBox(BaseModel):
 
 class Block(BaseModel):
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
-    type: BlockType
+    type: Literal[BlockType.TEXT, BlockType.HEADING, BlockType.CAPTION, BlockType.FOOTNOTE, BlockType.UNKNOWN] = BlockType.TEXT
     content: Optional[str] = None
     bbox: Optional[BoundingBox] = None
     provenance: List[Provenance] = Field(default_factory=list)
@@ -51,18 +51,18 @@ class Block(BaseModel):
         self.provenance.append(prov)
 
 class EquationBlock(Block):
-    type: BlockType = BlockType.EQUATION
+    type: Literal[BlockType.EQUATION] = BlockType.EQUATION
     latex: Optional[str] = None
     is_display: bool = True
     number: Optional[str] = None
 
 class TableBlock(Block):
-    type: BlockType = BlockType.TABLE
+    type: Literal[BlockType.TABLE] = BlockType.TABLE
     csv_content: Optional[str] = None
     caption_id: Optional[str] = None
 
 class FigureBlock(Block):
-    type: BlockType = BlockType.FIGURE
+    type: Literal[BlockType.FIGURE] = BlockType.FIGURE
     image_path: Optional[str] = None
     caption_id: Optional[str] = None
 
@@ -70,7 +70,7 @@ class Page(BaseModel):
     page_number: int
     width: float
     height: float
-    blocks: List[Union[EquationBlock, TableBlock, FigureBlock, Block]] = Field(default_factory=list)
+    blocks: List[Annotated[Union[EquationBlock, TableBlock, FigureBlock, Block], Field(discriminator="type")]] = Field(default_factory=list)
     image_path: Optional[str] = None
 
 class DocumentMetadata(BaseModel):
