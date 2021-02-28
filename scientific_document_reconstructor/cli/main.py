@@ -65,6 +65,18 @@ def export(project_dir: str, format: str = "latex"):
         out_dir = os.path.join(project_dir, "export")
         exporter.export(out_dir)
         console.print(f"[bold green]Exported LaTeX to {out_dir}[/bold green]")
+    elif format == "json":
+        from ..exporters.json_exporter import JsonExporter
+        exporter = JsonExporter(manager)
+        out_dir = os.path.join(project_dir, "export")
+        exporter.export(out_dir)
+        console.print(f"[bold green]Exported JSON to {out_dir}[/bold green]")
+    elif format == "html":
+        from ..exporters.html_exporter import HtmlExporter
+        exporter = HtmlExporter(manager)
+        out_dir = os.path.join(project_dir, "export")
+        exporter.export(out_dir)
+        console.print(f"[bold green]Exported HTML to {out_dir}[/bold green]")
     else:
         console.print(f"[red]Format {format} not supported yet.[/red]")
 
