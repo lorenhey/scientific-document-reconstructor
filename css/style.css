@@ -1,0 +1,91 @@
+/* Estilos para scientific-document-reconstructor v2.0.0 */
+:root {
+  --font-mono: 'Consolas', 'Fira Code', 'Monaco', monospace;
+  --font-serif: 'Charter', 'Cambria', 'Georgia', serif;
+}
+
+body {
+  background-color: #030712;
+  color: #f3f4f6;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0f172a;
+}
+::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}
+
+/* Tabs */
+.nav-tab-btn.active-tab {
+  background-color: #111827;
+  color: #38bdf8;
+  border-bottom: 2px solid #38bdf8;
+}
+.nav-tab-btn.inactive-tab {
+  color: #9ca3af;
+  border-bottom: 2px solid transparent;
+}
+.nav-tab-btn.inactive-tab:hover {
+  color: #f3f4f6;
+  background-color: rgba(17, 24, 39, 0.5);
+}
+
+.card-panel {
+  background-color: #111827;
+  border: 1px solid #1f2937;
+  border-radius: 0.5rem;
+}
+
+/* Document Paper Sheet */
+.paper-sheet {
+  background-color: #fcfbf9;
+  color: #1e293b;
+  font-family: var(--font-serif);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.5);
+  border-radius: 2px;
+}
+
+/* Bounding box highlights on paper scan */
+.bbox-overlay {
+  position: absolute;
+  border: 2px solid;
+  cursor: pointer;
+  transition: all 0.15s ease-in-out;
+}
+.bbox-overlay:hover {
+  background-color: rgba(56, 189, 248, 0.25) !important;
+  border-width: 3px;
+  z-index: 20;
+}
+.bbox-text { border-color: rgba(56, 189, 248, 0.7); background-color: rgba(56, 189, 248, 0.08); }
+.bbox-heading { border-color: rgba(168, 85, 247, 0.8); background-color: rgba(168, 85, 247, 0.12); }
+.bbox-equation { border-color: rgba(245, 158, 11, 0.85); background-color: rgba(245, 158, 11, 0.12); }
+.bbox-table { border-color: rgba(16, 185, 129, 0.8); background-color: rgba(16, 185, 129, 0.12); }
+.bbox-figure { border-color: rgba(239, 68, 68, 0.8); background-color: rgba(239, 68, 68, 0.12); }
+
+/* Badges */
+.badge-high-conf {
+  background-color: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+.badge-uncertain {
+  background-color: rgba(245, 158, 11, 0.15);
+  color: #fbbf24;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+.badge-corrected {
+  background-color: rgba(168, 85, 247, 0.15);
+  color: #c084fc;
+  border: 1px solid rgba(168, 85, 247, 0.3);
+}
